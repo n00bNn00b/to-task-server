@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng build --prod"
   },
   "dependencies": {
     "cors": "^2.8.5",
