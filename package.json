@@ -1,20 +1,16 @@
 {
   "name": "to-task-server",
-  "version": "1.0.0",
-  "engines": {
-    "node": "^16.14.0",
-    "yarn": "1.22.19"
-  },
+  "packageManager": "yarn@3.2.1",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js",
     "start": "node index.js",
-    "build": "ng build",
-    "heroku-postbuild": "ng build --prod"
+    "start-dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongodb": "^4.8.0"
+    "mongodb": "^4.6.0"
   }
 }
