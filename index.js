@@ -89,18 +89,22 @@ const run = async () => {
 
     // post request by user
     app.post("/tasks", async (req, res) => {
-      const taskName = req.body;
-      const query = {
-        email: taskName.email,
-        task: taskName.taskName,
-        status: taskName.status,
-      };
-      const exists = await taskCollection.findOne(query);
-      if (exists) {
-        return res.send({ success: false, taskName: exists });
+      try {
+        const task = req.body;
+        const query = {
+          email: task.email,
+          taskName: task.taskName,
+          status: task.status,
+        };
+        const exists = await taskCollection.findOne(query);
+        if (exists) {
+          return res.send({ success: false, task: exists });
+        }
+        const result = await taskCollection.insertOne(query);
+        return res.send({ success: true, result });
+      } catch (err) {
+        res.send(err);
       }
-      const result = await taskCollection.insertOne(query);
-      return res.send({ success: true, result });
     });
     // completed tasks post
     app.post("/completed", async (req, res) => {
@@ -118,7 +122,7 @@ const run = async () => {
             task: exists,
           });
         }
-        const result = await completedTaskCollection.insertOne(task);
+        const result = await completedTaskCollection.insertOne(query);
         res.send({
           success: true,
           result,
