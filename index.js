@@ -24,6 +24,9 @@ const run = async () => {
     await client.connect();
     console.log("DB Connected!");
     const taskCollection = client.db("test").collection("tasks");
+    const completedTaskCollection = client
+      .db("test")
+      .collection("completedTasks");
 
     //   REST API
     // all tasks
@@ -33,6 +36,9 @@ const run = async () => {
       res.send(tasks);
       // console.log(tasks);
     });
+
+    // completed task
+
     // task by id
     app.get("/task/:id", async (req, res) => {
       try {
@@ -70,10 +76,30 @@ const run = async () => {
       };
       const exists = await taskCollection.findOne(query);
       if (exists) {
-        return res.send({ success: false, tasks: exists });
+        return res.send({ success: false, task: exists });
       }
       const result = await taskCollection.insertOne(taskName);
       return res.send({ success: true, result });
+    });
+    // completed tasks post
+    app.post("/completed", async (req, res) => {
+      const task = req.body;
+      const query = {
+        email: task.email,
+        taskName: task.taskName,
+      };
+      const exists = await completedTaskCollection.findOne(query);
+      if (exists) {
+        return res.send({
+          success: false,
+          task: exists,
+        });
+      }
+      const result = await completedTaskCollection.insertOne(task);
+      res.send({
+        success: true,
+        result,
+      });
     });
 
     // delete item
