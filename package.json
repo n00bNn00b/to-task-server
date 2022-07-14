@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "^16.14.0",
-    "yarn": "1.19.1"
+    "yarn": "3.2.1"
   },
   "scripts": {
     "dev": "nodemon index.js",
