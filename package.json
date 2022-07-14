@@ -1,6 +1,6 @@
 {
   "name": "to-task-server",
-  "packageManager": "yarn@3.2.1",
+  "packageManager": "yarn@2.0.0",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
