@@ -42,7 +42,7 @@ const run = async () => {
     });
 
     // completed task
-    app.get("/completed", async (req, res) => {
+    app.get("/tasks/:email/completed", async (req, res) => {
       try {
         const query = {};
         const tasks = await completedTaskCollection.find(query).toArray();
