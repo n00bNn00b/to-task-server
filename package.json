@@ -1,11 +1,12 @@
 {
   "name": "to-task-server",
   "version": "1.0.0",
+  "packageManager": "yarn@3.2.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
