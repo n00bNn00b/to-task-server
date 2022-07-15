@@ -107,7 +107,7 @@ const run = async () => {
       }
     });
     // completed tasks post
-    app.post("/completed", async (req, res) => {
+    app.post("/tasks/:email/completed", async (req, res) => {
       try {
         const task = req.body;
         const query = {
