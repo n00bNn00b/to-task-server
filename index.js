@@ -41,10 +41,11 @@ const run = async () => {
       }
     });
 
-    // completed task
+    // completed task by email
     app.get("/tasks/:email/completed", async (req, res) => {
       try {
-        const query = {};
+        const email = req.params.email;
+        const query = { email };
         const tasks = await completedTaskCollection.find(query).toArray();
         res.send(tasks);
       } catch (err) {
